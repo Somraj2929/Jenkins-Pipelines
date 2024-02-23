@@ -1,1 +1,1 @@
-### Sample Pipeline to Install NodeJS
+### Sample Pipeline to Verify Docker Agent Configuration.
