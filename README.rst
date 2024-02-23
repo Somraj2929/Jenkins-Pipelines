@@ -1,4 +1,4 @@
-Jenkins Pipeline Examples (by kitconcept)
+🫶 Jenkins Pipeline Examples 🫶
 ==============================================================================
 
 Options
