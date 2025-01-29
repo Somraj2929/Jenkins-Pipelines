@@ -27,12 +27,21 @@ pipeline {
             }
         }
 
-        stage('Push the artifacts'){
-           steps {
+        stage('Login to Docker Hub') {
+            steps {
                 script {
-                    withCredentials([string(credentialsId: 'docker-hub-credentials', variable: 'DOCKER_HUB_PASSWORD')]) {
-                        sh '''
+                    withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {
+                        sh 'echo $DOCKER_HUB_PASSWORD | docker login -u $DOCKER_HUB_USERNAME --password-stdin'
+                    }
+                }
+            }
+        }
 
+        stage('Push the artifacts') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {
+                        sh '''
                         echo 'Pushing the Docker Image to Docker Hub'
                         docker push somraj29/cicd-e2e:${BUILD_NUMBER}
                         '''
@@ -40,6 +49,7 @@ pipeline {
                 }
             }
         }
+
         
         stage('Checkout K8S manifest SCM'){
             steps {
