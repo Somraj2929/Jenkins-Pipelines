@@ -21,7 +21,7 @@ pipeline {
                 script{
                     sh '''
                     echo 'Building Docker Image from python-jenkins-argocd-k8s directory'
-                    docker build -t somraj29/cicd-e2e:${BUILD_NUMBER} -f python-jenkins-argocd-k8s/Dockerfile python-jenkins-argocd-k8s
+                    docker build --no-cache -t somraj29/cicd-e2e:${BUILD_NUMBER} -f python-jenkins-argocd-k8s/Dockerfile python-jenkins-argocd-k8s
                     '''
                 }
             }
