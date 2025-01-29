@@ -30,13 +30,13 @@ pipeline {
         stage('Push the artifacts'){
            steps {
                 script {
-                    // withCredentials([string(credentialsId: 'docker-hub-credentials', variable: 'DOCKER_HUB_PASSWORD')]) {
+                    withCredentials([string(credentialsId: 'docker-hub-credentials', variable: 'DOCKER_HUB_PASSWORD')]) {
                         sh '''
 
                         echo 'Pushing the Docker Image to Docker Hub'
                         docker push somraj29/cicd-e2e:${BUILD_NUMBER}
                         '''
-                    // }
+                    }
                 }
             }
         }
