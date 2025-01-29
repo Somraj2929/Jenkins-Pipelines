@@ -68,7 +68,7 @@ pipeline {
                         cat deploy.yaml
                         
                         echo "Updating Deployment YAML with build number ${BUILD_NUMBER}"
-                        sed -i "s/32/${BUILD_NUMBER}/g" deploy.yaml
+                        sed -i '' "s/32/${BUILD_NUMBER}/g" deploy.yaml
                         
                         echo "Updated Deploy YAML:"
                         cat deploy.yaml
